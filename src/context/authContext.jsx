@@ -9,13 +9,14 @@ export const AuthContexProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post("/auth/login", inputs);
-    setCurrentUser(res.data.body);
+    const res = await axios.post("http://localhost:8801/api/auth/login", inputs);
+    setCurrentUser(res.data.username);
   };
 
   const logout = async (inputs) => {
-    await axios.post("/auth/logout");
+    await axios.post("http://localhost:8801/api/auth/logout");
     setCurrentUser(null);
+    // localStorage.setItem("userName", null);
   };
 
   useEffect(() => {
